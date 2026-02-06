@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "SmartFlow App",
-  description: "SmartFlow Application",
+  title: "Smart Flow Nutrition",
+  description: "Sistema de gestão para nutricionistas",
 };
 
 export default function RootLayout({
