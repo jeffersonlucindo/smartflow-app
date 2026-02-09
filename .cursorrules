@@ -1,0 +1,22 @@
+Always respond in Portuguese (Pt-BR).
+
+# Commit Pattern
+All commit messages must follow the Conventional Commits specification and be written in Portuguese (Pt-BR).
+
+Format: `<type>(<scope>): <subject>`
+
+Types:
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc.)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `chore`: Changes to the build process or auxiliary tools and libraries such as documentation generation
+
+Examples:
+- `feat(auth): adiciona suporte a login com Google`
+- `fix(login): corrige erro de redirecionamento no formulário`
+- `chore: atualiza dependências do projeto`
+- `docs: atualiza documentação da API`
