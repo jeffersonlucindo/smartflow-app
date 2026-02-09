@@ -5,6 +5,7 @@ export async function GET(request: Request) {
     const requestUrl = new URL(request.url)
     const code = requestUrl.searchParams.get('code')
     const next = requestUrl.searchParams.get('next') ?? '/dashboard'
+    const cleanNext = next.startsWith('/') ? next : '/dashboard'
     const origin = requestUrl.origin
 
     if (code) {
@@ -13,7 +14,7 @@ export async function GET(request: Request) {
 
         if (!error) {
             // Sucesso - redirecionar para o destino
-            return NextResponse.redirect(`${origin}${next}`)
+            return NextResponse.redirect(`${origin}${cleanNext}`)
         }
 
         // Erro ao trocar code por session

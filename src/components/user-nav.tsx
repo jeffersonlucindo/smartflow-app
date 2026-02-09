@@ -13,6 +13,7 @@ import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
 import { useRouter } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
+import { signOut } from '@/app/(auth)/login/actions'
 import { LogOut, Settings, User as UserIcon } from 'lucide-react'
 import { toast } from 'sonner'
 
@@ -25,14 +26,7 @@ export function UserNav({ user }: UserNavProps) {
     const supabase = createClient()
 
     const handleSignOut = async () => {
-        try {
-            await supabase.auth.signOut()
-            router.push('/login')
-            router.refresh()
-            toast.success('Desconectado com sucesso')
-        } catch (error) {
-            toast.error('Erro ao desconectar')
-        }
+        await signOut()
     }
 
     return (

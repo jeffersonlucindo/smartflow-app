@@ -51,11 +51,10 @@ export function ForgotPasswordForm() {
         try {
             setIsLoading(true)
 
-            console.log('Supabase URL defined:', !!process.env.NEXT_PUBLIC_SUPABASE_URL)
-            console.log('Supabase Key defined:', !!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+            const redirectTo = `${process.env.NEXT_PUBLIC_SITE_URL || window.location.origin}/auth/confirm?type=recovery&next=/reset-password`
 
             const { error } = await supabase.auth.resetPasswordForEmail(values.email, {
-                redirectTo: `${window.location.origin}/auth/confirm?type=recovery&next=/auth/reset-password`,
+                redirectTo,
             })
 
             if (error) {

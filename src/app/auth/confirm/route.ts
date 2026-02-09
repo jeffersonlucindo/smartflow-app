@@ -9,6 +9,9 @@ export async function GET(request: Request) {
     const code = searchParams.get('code')
     const next = searchParams.get('next') ?? '/dashboard'
 
+    // Validar se next é um caminho relativo para evitar Open Redirect
+    const cleanNext = next.startsWith('/') ? next : '/dashboard'
+
     if (token_hash && type) {
         const supabase = await createClient()
 
@@ -20,11 +23,11 @@ export async function GET(request: Request) {
         if (!error) {
             // Se for recuperação de senha, redirecionar para página de reset
             if (type === 'recovery') {
-                return NextResponse.redirect(new URL('/auth/reset-password', request.url))
+                return NextResponse.redirect(new URL('/reset-password', request.url))
             }
 
             // Para outros tipos (signup, email_change, etc), ir para dashboard
-            return NextResponse.redirect(new URL(next, request.url))
+            return NextResponse.redirect(new URL(cleanNext, request.url))
         }
     } else if (code) {
         const supabase = await createClient()
@@ -33,7 +36,7 @@ export async function GET(request: Request) {
 
         if (!error) {
             // Se houver um next param explícito ou se estamos vindo de um fluxo que define next
-            return NextResponse.redirect(new URL(next, request.url))
+            return NextResponse.redirect(new URL(cleanNext, request.url))
         }
     }
 

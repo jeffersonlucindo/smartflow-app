@@ -34,8 +34,8 @@ export async function middleware(request: NextRequest) {
         data: { user },
     } = await supabase.auth.getUser()
 
-    // Proteger rotas que começam com /dashboard, /profile, /settings, /auth/reset-password
-    const protectedPaths = ['/dashboard', '/profile', '/settings', '/auth/reset-password']
+    // Proteger rotas que começam com /dashboard, /profile, /settings, /reset-password
+    const protectedPaths = ['/dashboard', '/profile', '/settings', '/reset-password']
     const isProtectedPath = protectedPaths.some(path =>
         request.nextUrl.pathname.startsWith(path)
     )
